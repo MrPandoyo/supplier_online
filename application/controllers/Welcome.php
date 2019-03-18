@@ -10,7 +10,11 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		if(isset($this->session->userdata['status']) && $this->session->userdata['status'] == 'login'){
-			redirect(base_url().'index.php/admin');
+			if($this->session->userdata('tipe_user') == 'admin'){
+				redirect(base_url().'index.php/admin');
+			}else{
+				redirect(base_url().'index.php/client');
+			}
 		}else{
 			$this->load->view('login');
 		}

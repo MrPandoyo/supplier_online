@@ -9,6 +9,10 @@ class Client extends CI_Controller {
 		if($this->session->userdata('status') != "login"){
 			$alert=$this->session->set_flashdata('alert', 'Anda belum Login');
 			redirect(base_url());
+		}else{
+			if($this->session->userdata('tipe_user') != 'client'){
+				redirect(base_url().'index.php/admin');
+			}
 		}
 	}
 

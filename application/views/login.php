@@ -1,96 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Page</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap.css' ?>">
-	<script type="text/javascript" src="<?php echo base_url().'assets/js/jquery.js'; ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'; ?>"></script>
-	<style type="text/css">
-		body { 
-  background: url(<?php echo base_url().'images/sunset.jpg'; ?>) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+	<base href="<?php echo base_url(); ?>">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Supplier Online | Log in</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 3.3.7 -->
+	<link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="assets/bower_components/Ionicons/css/ionicons.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+	<!-- iCheck -->
+	<link rel="stylesheet" href="assets/plugins/iCheck/square/blue.css">
 
-.panel-default {
-opacity: 0.9;
-margin-top:30px;
-}
-.form-group.last { margin-bottom:0px; }
-	</style>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<!-- Google Font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body>
-	<div class="container">
-	    <div class="row">
-	    	<?php
-			if(isset($_GET['pesan'])){
-				if($_GET['pesan'] == "gagal"){
-					echo "<div class='alert alert-danger alert-danger'>";
-					echo $this->session->flashdata('alert');
-					echo "</div>";
-					
-				}else if($_GET['pesan'] == "logout"){
-					if($this->session->flashdata())
-					{
-						echo "<div class='alert alert-danger alert-success'>";
-						echo $this->session->flashdata('Anda Telah Logut');
-						echo "</div>";
-					}	
-				
+<body class="hold-transition login-page">
+<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- /.login-box -->
 
-				}else if($_GET['pesan'] == "belumlogin"){
-					if($this->session->flashdata())
-					{
-						echo "<div class='alert alert-danger alert-primary'>";
-						echo $this->session->flashdata('alert');
-						echo "</div>";
-					}	
-				}
-			}else{
-				if($this->session->flashdata())
+<!-- jQuery 3 -->
+<div class="login-box">
+	<div class="login-logo">
+		<a href="#!"><b>Supplier</b>Online</a>
+	</div>
+	<?php
+	if(isset($_GET['pesan'])){
+		if($_GET['pesan'] == "gagal"){
+			echo "<div class='alert alert-danger alert-danger'>";
+			echo $this->session->flashdata('alert');
+			echo "</div>";
+
+		}else if($_GET['pesan'] == "logout"){
+			if($this->session->flashdata())
 			{
-				echo "<div class='alert alert-danger alert-message'>";
+				echo "<div class='alert alert-danger alert-success'>";
+				echo $this->session->flashdata('Anda Telah Logut');
+				echo "</div>";
+			}
+
+
+		}else if($_GET['pesan'] == "belumlogin"){
+			if($this->session->flashdata())
+			{
+				echo "<div class='alert alert-danger alert-primary'>";
 				echo $this->session->flashdata('alert');
 				echo "</div>";
 			}
 		}
+	}else{
+		if($this->session->flashdata())
+		{
+			echo "<div class='alert alert-danger alert-message'>";
+			echo $this->session->flashdata('alert');
+			echo "</div>";
+		}
+	}
 	?>
-	        <div class="col-md-4 col-md-offset-7">
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    <span class="glyphicon glyphicon-lock"></span> Login</div>
-	                <div class="panel-body">
-	                    <form action="<?php echo base_url().'index.php/welcome/login' ?>" method="post" class="form-horizontal" role="form">
-		                    <div class="form-group">
-		                        <label for="inputEmail3" class="col-sm-3 control-label">
-		                            Email</label>
-		                        <div class="col-sm-9">
-		                            <input type="email" class="form-control" name="username" id="inputEmail3" placeholder="Email" required>
-		                        </div>
-		                    </div>
-		                    <div class="form-group">
-		                        <label for="inputPassword3" class="col-sm-3 control-label">
-		                            Password</label>
-		                        <div class="col-sm-9">
-		                            <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password" required>
-		                        </div>
-		                    </div>
-		                    <div class="form-group last">
-		                        <div class="col-sm-offset-3 col-sm-9">
-		                            <button type="submit" class="btn btn-primary">Login</button>
-		                        </div>
-		                    </div>
-	                    </form>
-	                </div>
-	                <div class="panel-footer">
-	                    <a href="<?php echo base_url().'index.php/welcome/daftar'; ?>">Daftar menjadi Client</a></div>
-	            </div>
-	        </div>
-	    </div>
+	<!-- /.login-logo -->
+	<div class="login-box-body">
+		<form action="<?php echo base_url().'index.php/welcome/login' ?>" method="post">
+			<div class="form-group has-feedback">
+				<input type="email" class="form-control" name="username" placeholder="Email" required>
+				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="password" class="form-control" name="password" placeholder="Password" required>
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+					<a class="btn btn-default btn-block btn-flat" href="<?php echo base_url().'index.php/welcome/register' ?>">Register as Client</a>
+					<a class="btn btn-default btn-block btn-flat" href="#!">I forgot my password</a><br>
+				</div>
+			</div>
+		</form>
+
+
 	</div>
+	<!-- /.login-box-body -->
+</div>
+<!-- Bootstrap 3.3.7 -->
+<script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="assets/plugins/iCheck/icheck.min.js"></script>
 </body>
 </html>
-
-

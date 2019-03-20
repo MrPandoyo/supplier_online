@@ -33,7 +33,8 @@ class Welcome extends CI_Controller {
 				$cek = $data->num_rows();
 
 				if($cek > 0){
-					$this->session->set_userdata($d);
+					$session = array('id' => $d->id, 'nama' => $d->nama, 'email'=>$d->username ,'tipe_user'=>$d->tipe_user, 'status' => 'login', 'foto'=>$d->foto);
+					$this->session->set_userdata($session);
 					if($d->tipe_user == 'admin'){
 						redirect(base_url().'index.php/admin');
 					}else{

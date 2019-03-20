@@ -21,27 +21,23 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<?php
-					if($this->session->userdata('foto') == null) {?>
-						<img src="images/user.png" class="user-image" alt="User Image">
-					<?php}else{?>
+				<?php  if($this->session->userdata('foto') != null && $this->session->userdata('foto') != '') : ?>
 						<img src="images/profile/<?php echo $this->session->userdata('foto')?>" class="user-image" alt="User Image">
-					<?php}
-				?>
-              <span class="hidden-xs"><? echo $this->session->userdata('nama'); ?></span>
+					<?php else: ?>
+						<img src="images/user.png" class="user-image" alt="User Image">
+					<?php endif; ?>
+              <span class="hidden-xs"><?php echo $this->session->userdata('nama'); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-				  <?php
-				  if($this->session->userdata('foto') == null) {?>
-					  <img src="images/user.png" class="img-circle" alt="User Image">
-				  <?php}else{?>
+				  <?php  if($this->session->userdata('foto') != null && $this->session->userdata('foto') != '') : ?>
 					  <img src="images/profile/<?php echo $this->session->userdata('foto')?>" class="img-circle" alt="User Image">
-				  <?php}
-				  ?>
+				  <?php else: ?>
+					  <img src="images/user.png" class="img-circle" alt="User Image">
+				  <?php endif; ?>
                 <p>
-					<? echo $this->session->userdata('nama'); ?>
+					<?php echo $this->session->userdata('nama'); ?>
                   <small>Joined on </small>
                 </p>
               </li>

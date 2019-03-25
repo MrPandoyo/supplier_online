@@ -6,5 +6,11 @@ class M_supplier extends CI_Model{
 		return $this->db->get_where($table,$where);
 	}
 
+	function saveData($data,$table){
+		$this->db->set($data);
+		$this->db->insert($table);
+   		return $this->db->insert_id();
+	}
+
 }
 ?>

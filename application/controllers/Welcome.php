@@ -74,5 +74,45 @@ class Welcome extends CI_Controller {
 		}
 	}
 
+	function register(){
+		$namaToko = $this->input->post('namaToko');
+		$namaPemilik = $this->input->post('namaPemilik');
+		$email = $this->input->post('email');
+		$phone = $this->input->post('phone');
+		$alamat = $this->input->post('alamat');
+		$password = $this->input->post('password');
+
+		$this->form_validation->set_rules('password','Password','trim|required');
+		$this->form_validation->set_rules('passconf','Password Confirmation','trim|required|matches[password]');
+		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[user.username]', array('is_unique' => 'Email '.$email.' sudah dipakai.'));
+
+		if($this->form_validation->run() != false){
+			$user = array(
+				'username' => $email,
+				'nama' => $namaToko,
+				'password' => md5($password),
+				'tipe_user' => 'client'
+			);
+			$idUser = $this->m_supplier->saveData($user,'user');
+
+			$client = array(
+				'nama_toko' => $namaToko,
+				'nama_pemilik' => $namaPemilik,
+				'alamat' => $alamat,
+				'phone' => $phone,
+				'email' => $email,
+				'join_date' => date('Y-m-d H:i:s'),
+				'verified' => false,
+				'id_user' => $idUser
+			);
+			$this->m_supplier->saveData($client,'client');
+
+			$this->session->set_flashdata('daftar_sukses','Akun anda telah sukses dibuat.');
+			$this->login();
+		}else{
+			$this->load->view('form_daftar');
+		}
+	}
+
 }
 ?>

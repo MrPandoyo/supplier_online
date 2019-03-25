@@ -4,7 +4,11 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+			<?php  if($this->session->userdata('foto') != null && $this->session->userdata('foto') != '') : ?>
+				<img src="images/profile/<?php echo $this->session->userdata('foto')?>" class="img-circle" alt="User Image">
+			<?php else: ?>
+				<img src="images/user.png" class="img-circle" alt="User Image">
+			<?php endif; ?>
         </div>
         <div class="pull-left info">
           <p><?php echo $this->session->userdata('nama');?></p>

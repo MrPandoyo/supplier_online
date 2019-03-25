@@ -6,13 +6,13 @@ $this->load->view('fragments/header');
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
-        <small>it all starts here</small>
+        <?php if(isset($data) && $data['page_title'] != ''){ echo $data['page_title'];} ?>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li class="active">
+			<?php if(isset($data) && $data['page_tab'] != ''){ echo $data['page_tab'];} ?>
+		</li>
       </ol>
     </section>
 

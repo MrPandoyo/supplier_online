@@ -42,6 +42,7 @@ class Client extends CI_Controller {
 	}
 
 	public function shop(){
+		$data['tab'] = "shop";
 		$this->load->view('client/shop');	
 	}
 

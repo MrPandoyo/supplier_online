@@ -29,15 +29,19 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition register-page">
-<div class="register-box">
+<div class="register-box" style="width: 720px;">
 	<div class="register-logo">
 		<a href="assets/index2.html"><b>Supplier Online</b> Daftar</a>
 	</div>
 
 	<div class="register-box-body">
 		<p class="login-box-msg">Harap isi data dibawah</p>
-
 		<form action="index.php/welcome/register" method="post">
+			<?php if(validation_errors() != ''){
+				echo '<div class="alert alert-danger alert-warning">';
+				echo validation_errors();
+				echo '</div>';}
+			?>
 			<div class="form-group">
 				<label class="cols-sm-2 control-label">Nama Toko</label>
 				<div class="cols-sm-10">
@@ -61,7 +65,16 @@
 				<div class="cols-sm-10">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-						<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+						<input type="email" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="cols-sm-2 control-label">Handphone</label>
+				<div class="cols-sm-10">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+						<input type="number" class="form-control" name="phone" id="phone"  placeholder="Masukan nomor telepon"/>
 					</div>
 				</div>
 			</div>
@@ -70,7 +83,7 @@
 				<div class="cols-sm-10">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-						<input type="text" class="form-control" name="alamat" id="alamat"  placeholder="Masukan alamat toko"/>
+						<textarea class="form-control" name="alamat" id="alamat"  placeholder="Masukan alamat toko"></textarea>
 					</div>
 				</div>
 			</div>
@@ -88,7 +101,7 @@
 				<div class="cols-sm-10">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-						<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+						<input type="password" class="form-control" name="passconf" placeholder="Confirm your Password"/>
 					</div>
 				</div>
 			</div>
@@ -96,7 +109,7 @@
 				<div class="col-xs-8">
 					<div class="checkbox icheck">
 						<label>
-							<input type="checkbox" required> I agree to the <a href="#">terms</a>
+							<input type="checkbox" required> Saya setuju dengan <a href="#">ketentuan</a>
 						</label>
 					</div>
 				</div>

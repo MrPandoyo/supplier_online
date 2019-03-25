@@ -17,25 +17,17 @@ class Admin extends CI_Controller {
 	}
 
 	public function index(){
-		// $data['tab'] = "home"; 
-		// $this->load->view('admin/header',$data);
-		// $this->load->view('admin/home');
-		// $this->load->view('admin/footer');	
 		$this->load->view('fragments/layout', ['content' => 'admin/home']);
 	}
 
-	public function items(){
-		$data['tab'] = "items"; 
-		$this->load->view('admin/header',$data);
-		$this->load->view('admin/items');
-		$this->load->view('admin/footer');	
+	public function manage_produk(){
+		$data['tab'] = "manage_produk";
+		$this->load->view('fragments/layout', ['content' => 'admin/manage_produk/list']);
 	}
 
-	public function tambah_items(){
-		$data['tab'] = "items"; 
-		$this->load->view('admin/header',$data);
-		$this->load->view('admin/tambah_items');
-		$this->load->view('admin/footer');	
+	public function form_produk(){
+		$data['tab'] = "manage_produk";
+		$this->load->view('fragments/layout', ['content' => 'admin/manage_produk/form']);
 	}
 
 	public function manage_request(){

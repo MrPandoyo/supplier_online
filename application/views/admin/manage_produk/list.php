@@ -1,7 +1,7 @@
 
                 <div class="col-md-12">
                     <h1>List Items</h1>
-                    <a href="<?php echo base_url().'index.php/admin/tambah_items'; ?>" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span> Items Baru</a>
+                    <a href="<?php echo base_url().'index.php/admin/form_produk'; ?>" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span> Items Baru</a>
                     <br /><br>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover" id="table-datatable">
@@ -43,4 +43,3 @@
                             </table>
                         </div>
                     </div>
-           

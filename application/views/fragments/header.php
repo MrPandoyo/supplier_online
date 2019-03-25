@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="assets/index2.html" class="logo">
+    <a href="index.php/welcome/home" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -62,7 +62,11 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+					<?php  if($this->session->userdata('tipe_user') == 'admin') : ?>
+						<a href="index.php/admin/logout" class="btn btn-default btn-flat">Logout</a>
+					<?php else: ?>
+						<a href="index.php/client/logout" class="btn btn-default btn-flat">Logout</a>
+					<?php endif; ?>
                 </div>
               </li>
             </ul>

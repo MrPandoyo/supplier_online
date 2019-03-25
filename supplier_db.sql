@@ -1,283 +1,250 @@
--- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 5.6.35, for debian-linux-gnu (x86_64)
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 16, 2019 at 12:04 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-CREATE DATABASE IF NOT EXISTS supplier_db;
-use supplier_db;
-
+-- Host: 127.0.0.1    Database: supplier_db
+-- ------------------------------------------------------
+-- Server version	5.6.35-1+deb.sury.org~xenial+0.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `supplier_db`
---
-
--- --------------------------------------------------------
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
 -- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `category` (
-  `id` int(9) NOT NULL,
+  `id` int(9) NOT NULL AUTO_INCREMENT,
   `kode` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL
+  `nama` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `kode` (`kode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `client`
 --
 
+DROP TABLE IF EXISTS `client`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client` (
-  `id` int(9) NOT NULL,
+  `id` int(9) NOT NULL AUTO_INCREMENT,
   `nama_toko` varchar(255) NOT NULL,
   `alamat` text NOT NULL,
   `id_user` int(9) NOT NULL,
-  `no_ktp_pemilik` varchar(255) NOT NULL
+  `no_ktp_pemilik` varchar(255) NOT NULL,
+  `verified` bit(1) NOT NULL DEFAULT b'0',
+  `join_date` date NOT NULL,
+  `nama_pemilik` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `no_ktp_pemilik` (`no_ktp_pemilik`),
+  UNIQUE KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `client`
+--
+
+LOCK TABLES `client` WRITE;
+/*!40000 ALTER TABLE `client` DISABLE KEYS */;
+/*!40000 ALTER TABLE `client` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `kurir`
 --
 
+DROP TABLE IF EXISTS `kurir`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `kurir` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(255) NOT NULL,
-  `kode` varchar(10) NOT NULL
+  `kode` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `kode` (`kode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `kurir`
+--
+
+LOCK TABLES `kurir` WRITE;
+/*!40000 ALTER TABLE `kurir` DISABLE KEYS */;
+/*!40000 ALTER TABLE `kurir` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `pengiriman`
 --
 
+DROP TABLE IF EXISTS `pengiriman`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pengiriman` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_kurir` int(11) NOT NULL,
   `waktu_berangkat` date NOT NULL,
-  `waktu_sampai` date DEFAULT NULL
+  `waktu_sampai` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_kurir` (`id_kurir`),
+  CONSTRAINT `pengiriman_ibfk_1` FOREIGN KEY (`id_kurir`) REFERENCES `kurir` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `pengiriman_ibfk_2` FOREIGN KEY (`id`) REFERENCES `transaksi` (`id_pengiriman`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `pengiriman`
+--
+
+LOCK TABLES `pengiriman` WRITE;
+/*!40000 ALTER TABLE `pengiriman` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pengiriman` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `product`
 --
 
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `nama_product` varchar(255) NOT NULL,
   `id_category` int(11) NOT NULL,
   `stock` int(11) NOT NULL DEFAULT '0',
   `description` text NOT NULL,
-  `harga` decimal(13,4) NOT NULL
+  `harga` decimal(13,4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_category` (`id_category`),
+  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `transaksi`
 --
 
+DROP TABLE IF EXISTS `transaksi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaksi` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_client` int(11) NOT NULL,
   `id_pengiriman` int(11) NOT NULL,
-  `total_harga` decimal(13,4) DEFAULT NULL
+  `total_harga` decimal(13,4) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_client` (`id_client`,`id_pengiriman`),
+  KEY `id_pengiriman` (`id_pengiriman`),
+  CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `transaksi`
+--
+
+LOCK TABLES `transaksi` WRITE;
+/*!40000 ALTER TABLE `transaksi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transaksi` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `transaksi_detail`
 --
 
+DROP TABLE IF EXISTS `transaksi_detail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaksi_detail` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_transaksi` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL DEFAULT '1'
+  `jumlah` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `id_transaksi` (`id_transaksi`),
+  KEY `id_product` (`id_product`),
+  CONSTRAINT `transaksi_detail_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `transaksi_detail_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `transaksi_detail`
+--
+
+LOCK TABLES `transaksi_detail` WRITE;
+/*!40000 ALTER TABLE `transaksi_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transaksi_detail` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `id` int(5) NOT NULL,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `nama` varchar(25) NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(35) NOT NULL,
-  `tipe_user` enum('admin','client') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `tipe_user` enum('admin','client') NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `username`, `password`, `tipe_user`) VALUES
-(1, 'Administrator', 'admin@yopmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
-(4, 'Client', 'client@yopmail.com', '21232f297a57a5a743894a0e4a801fc3', 'client');
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Administrator','admin@yopmail.com','21232f297a57a5a743894a0e4a801fc3','admin',NULL),(4,'Client','client@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `kode` (`kode`);
-
---
--- Indexes for table `client`
---
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `no_ktp_pemilik` (`no_ktp_pemilik`),
-  ADD UNIQUE KEY `id_user` (`id_user`);
-
---
--- Indexes for table `kurir`
---
-ALTER TABLE `kurir`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `kode` (`kode`);
-
---
--- Indexes for table `pengiriman`
---
-ALTER TABLE `pengiriman`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_kurir` (`id_kurir`);
-
---
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_category` (`id_category`);
-
---
--- Indexes for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_client` (`id_client`,`id_pengiriman`),
-  ADD KEY `id_pengiriman` (`id_pengiriman`);
-
---
--- Indexes for table `transaksi_detail`
---
-ALTER TABLE `transaksi_detail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_transaksi` (`id_transaksi`),
-  ADD KEY `id_product` (`id_product`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `client`
---
-ALTER TABLE `client`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `kurir`
---
-ALTER TABLE `kurir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pengiriman`
---
-ALTER TABLE `pengiriman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transaksi_detail`
---
-ALTER TABLE `transaksi_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `pengiriman`
---
-ALTER TABLE `pengiriman`
-  ADD CONSTRAINT `pengiriman_ibfk_1` FOREIGN KEY (`id_kurir`) REFERENCES `kurir` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pengiriman_ibfk_2` FOREIGN KEY (`id`) REFERENCES `transaksi` (`id_pengiriman`);
-
---
--- Constraints for table `product`
---
-ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`);
-
---
--- Constraints for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`);
-
---
--- Constraints for table `transaksi_detail`
---
-ALTER TABLE `transaksi_detail`
-  ADD CONSTRAINT `transaksi_detail_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaksi_detail_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`);
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-03-25  9:54:15

@@ -24,40 +24,40 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Category</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> User Admin</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Kurir</a></li>
+            <li><a href="index.php/admin/category"><i class="fa fa-circle-o"></i> Category</a></li>
+            <li><a href="index.php/admin/user_admin"><i class="fa fa-circle-o"></i> User Admin</a></li>
+            <li><a href="index.php/admin/kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
           </ul>
         </li>
         <li>
-          <a href="../widgets.html">
+          <a href="index.php/admin/manage_produk">
             <i class="fa fa-th"></i> <span>Manage Products</span>
           </a>
         </li>
         <li>
-          <a href="../widgets.html">
+          <a href="index.php/admin/manage_request">
             <i class="fa fa-th"></i> <span>Manage Requests</span>
           </a>
         </li>
         <li>
-          <a href="../widgets.html">
+          <a href="index.php/admin/manage_pengiriman">
             <i class="fa fa-th"></i> <span>Manage Pengiriman</span>
           </a>
         </li>
           <?php else: ?>
       <!-- client sidebar -->
         <li>
-          <a href="../widgets.html">
+          <a href="index.php/client/shop">
             <i class="fa fa-th"></i> <span>Katalog produk</span>
           </a>
         </li>
         <li>
-          <a href="../widgets.html">
+          <a href="index.php/client/order">
             <i class="fa fa-th"></i> <span>Order</span>
           </a>
         </li>
         <li>
-          <a href="../widgets.html">
+          <a href="index.php/client/pengiriman">
             <i class="fa fa-th"></i> <span>Pengiriman</span>
           </a>
         </li>

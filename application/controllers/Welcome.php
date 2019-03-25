@@ -27,7 +27,7 @@ class Welcome extends CI_Controller {
 			$this->form_validation->set_rules('password','password','trim|required');
 			if($this->form_validation->run() != false){
 				$where = array('username' => $username, 'password' => md5($password));
-				
+
 				$data = $this->m_supplier->get_data_detail($where, 'user');
 				$d = $this->m_supplier->get_data_detail($where, 'user')->row();
 				$cek = $data->num_rows();
@@ -42,7 +42,7 @@ class Welcome extends CI_Controller {
 					}
 				}else{
 					$this->session->set_flashdata('alert','Login gagal! Username atau Password salah.');
-					redirect(base_url().'welcome?pesan=gagal');
+					redirect(base_url().'index.php/welcome?pesan=gagal');
 				}
 			}else{
 					$this->load->view('login');
@@ -50,8 +50,28 @@ class Welcome extends CI_Controller {
 			}
 	}
 
+	function home(){
+		if(isset($this->session->userdata['status']) && $this->session->userdata['status'] == 'login'){
+			if($this->session->userdata('tipe_user') == 'admin'){
+				redirect(base_url().'index.php/admin');
+			}else{
+				redirect(base_url().'index.php/client');
+			}
+		}else{
+			$this->load->view('login');
+		}
+	}
+
 	function daftar(){
-		$this->load->view('form_daftar');
+		if(isset($this->session->userdata['status']) && $this->session->userdata['status'] == 'login'){
+			if($this->session->userdata('tipe_user') == 'admin'){
+				redirect(base_url().'index.php/admin');
+			}else{
+				redirect(base_url().'index.php/client');
+			}
+		}else{
+			$this->load->view('form_daftar');
+		}
 	}
 
 }

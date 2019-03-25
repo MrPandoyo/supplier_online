@@ -39,28 +39,27 @@
 	</div>
 	<?php
 	if(isset($_GET['pesan'])){
-		if($_GET['pesan'] == "gagal"){
-			echo "<div class='alert alert-danger alert-danger'>";
-			echo $this->session->flashdata('alert');
-			echo "</div>";
-
-		}else if($_GET['pesan'] == "logout"){
-			if($this->session->flashdata())
-			{
-				echo "<div class='alert alert-danger alert-success'>";
-				echo $this->session->flashdata('Anda Telah Logut');
-				echo "</div>";
-			}
-
-
-		}else if($_GET['pesan'] == "belumlogin"){
-			if($this->session->flashdata())
-			{
-				echo "<div class='alert alert-danger alert-primary'>";
+		switch ($_GET['pesan']){
+			case "gagal":{
+				echo "<div class='alert alert-danger alert-danger'>";
 				echo $this->session->flashdata('alert');
 				echo "</div>";
+				break;
+			}
+			case "logout":{
+				echo "<div class='alert alert-danger alert-success'>";
+				echo "Anda telah logout";
+				echo "</div>";
+				break;
+			}
+			case "belumlogin":{
+				echo "<div class='alert alert-danger alert-warning'>";
+				echo $this->session->flashdata('alert');
+				echo "</div>";
+				break;
 			}
 		}
+
 	}else{
 		if($this->session->flashdata())
 		{
@@ -84,8 +83,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-					<a class="btn btn-default btn-block btn-flat" href="<?php echo base_url().'index.php/welcome/register' ?>">Register as Client</a>
-					<a class="btn btn-default btn-block btn-flat" href="#!">I forgot my password</a><br>
+					<a class="btn btn-default btn-block btn-flat" href="<?php echo base_url().'index.php/welcome/daftar' ?>">Register as Client</a>
+<!--					<a class="btn btn-default btn-block btn-flat" href="#!">I forgot my password</a><br>-->
 				</div>
 			</div>
 		</form>

@@ -28,8 +28,8 @@ class Welcome extends CI_Controller {
 			if($this->form_validation->run() != false){
 				$where = array('username' => $username, 'password' => md5($password));
 
-				$data = $this->m_supplier->get_data_detail($where, 'user');
-				$d = $this->m_supplier->get_data_detail($where, 'user')->row();
+				$data = $this->m_supplier->getData('user',$where);
+				$d = $this->m_supplier->getData('user',$where)->row();
 				$cek = $data->num_rows();
 
 				if($cek > 0){

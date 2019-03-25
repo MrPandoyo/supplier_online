@@ -1,3 +1,7 @@
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
 <header class="main-header">
     <!-- Logo -->
     <a href="index.php/welcome/home" class="logo">

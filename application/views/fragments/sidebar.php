@@ -20,17 +20,17 @@
         <li class="header">MAIN NAVIGATION</li>
         <!-- admin sidebar -->
         <?php if($this->session->userdata('tipe_user') == 'admin') : ?>
-        <li class="treeview">
+        <li class="treeview <?php if(isset($page_tab) && $page_tab == 'Master') echo 'menu-open' ?>">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Master</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="index.php/admin/category"><i class="fa fa-circle-o"></i> Category</a></li>
-            <li><a href="index.php/admin/user_admin"><i class="fa fa-circle-o"></i> User Admin</a></li>
-            <li><a href="index.php/admin/kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
+          <ul class="treeview-menu" style="<?php if(isset($page_tab) && $page_tab == 'Master') echo 'display:block' ?>">
+            <li class="<?php if(isset($page_level1) && $page_level1 == 'Category') echo 'active' ?>"><a href="index.php/master_category"><i class="fa fa-circle-o"></i> Category</a></li>
+            <li class="<?php if(isset($page_level1) && $page_level1 == 'User Admin') echo 'active' ?>"><a href="index.php/admin/user_admin"><i class="fa fa-circle-o"></i> User Admin</a></li>
+            <li class="<?php if(isset($page_level1) && $page_level1 == 'Kurir') echo 'active' ?>"><a href="index.php/admin/kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
           </ul>
         </li>
         <li>

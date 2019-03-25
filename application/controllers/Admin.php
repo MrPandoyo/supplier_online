@@ -20,43 +20,6 @@ class Admin extends CI_Controller {
 		$this->load->view('fragments/layout', ['content' => 'admin/home']);
 	}
 
-	public function manage_produk(){
-		$data['tab'] = "manage_produk";
-		$this->load->view('fragments/layout', ['content' => 'admin/manage_produk/list']);
-	}
-
-	public function form_produk(){
-		$data['tab'] = "manage_produk";
-		$this->load->view('fragments/layout', ['content' => 'admin/manage_produk/form']);
-	}
-
-	public function manage_request(){
-		$data['tab'] = "request"; 
-		$this->load->view('admin/header',$data);
-		$this->load->view('admin/manage_request');
-		$this->load->view('admin/footer');	
-	}
-
-	public function manage_pengiriman(){
-		$data['tab'] = "pengiriman"; 
-		$this->load->view('admin/header',$data);
-		$this->load->view('admin/pengiriman');
-		$this->load->view('admin/footer');	
-	}
-
-	public function kirim_request(){
-		$data['tab'] = "pengiriman"; 
-		$this->load->view('admin/header',$data);
-		$this->load->view('admin/kirim_request');
-		$this->load->view('admin/footer');	
-	}
-
-	public function manage_komplain(){
-		$data['tab'] = "komplain"; 
-		$this->load->view('admin/header',$data);
-		$this->load->view('admin/komplain');
-		$this->load->view('admin/footer');	
-	}
 
 	public function logout(){
 		$this->session->sess_destroy();

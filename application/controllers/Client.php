@@ -20,27 +20,6 @@ class Client extends CI_Controller {
 		$this->load->view('fragments/layout', ['content' => 'client/home']);
 	}
 
-	public function request_barang(){
-		$data['tab'] = "request_barang"; 
-		$this->load->view('client/header',$data);
-		$this->load->view('client/request_barang');
-		$this->load->view('client/footer');	
-	}
-
-	public function request_form(){
-		$data['tab'] = "request_barang"; 
-		$this->load->view('client/header',$data);
-		$this->load->view('client/request_form');
-		$this->load->view('client/footer');	
-	}
-
-	public function pengiriman(){
-		$data['tab'] = "pengiriman"; 
-		$this->load->view('client/header',$data);
-		$this->load->view('client/pengiriman');
-		$this->load->view('client/footer');	
-	}
-
 	public function shop(){
 		$data['tab'] = "shop";
 		$this->load->view('client/shop');	

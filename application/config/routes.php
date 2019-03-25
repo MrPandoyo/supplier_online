@@ -52,3 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+//custom
+$route['master_category'] = 'admins/Master_Category';
+$route['master_category/form'] = 'admins/Master_Category/form';
+$route['master_category/save'] = 'admins/Master_Category/save';
+$route['master_category/delete'] = 'admins/Master_Category/delete';

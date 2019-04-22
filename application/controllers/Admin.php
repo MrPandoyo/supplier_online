@@ -7,7 +7,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		// cek login
 		if($this->session->userdata('nama') == ''){
-			$alert=$this->session->set_flashdata('alert', 'Anda belum Login');
+			$this->session->set_flashdata('alert', 'Anda belum Login');
 			redirect(base_url());
 		}else{
 			if($this->session->userdata('tipe_user') != 'admin'){

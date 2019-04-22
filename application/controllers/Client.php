@@ -7,7 +7,7 @@ class Client extends CI_Controller {
 		parent::__construct();
 		// cek login
 		if($this->session->userdata == null){
-			$alert=$this->session->set_flashdata('alert', 'Anda belum Login');
+			$this->session->set_flashdata('alert', 'Anda belum Login');
 			redirect(base_url());
 		}else{
 			if($this->session->userdata('tipe_user') != 'client'){
@@ -21,8 +21,15 @@ class Client extends CI_Controller {
 	}
 
 	public function shop(){
-		$data['tab'] = "shop";
-		$this->load->view('client/shop');	
+		$data['page_title'] = "Beli Supply";
+		$data['page_tab'] = "Shop";
+		$data['page_level1'] = "Category";
+//		$data['customCss'] = "";
+//		$data['customJavascript'] = "";
+		$data['content'] = "client/shop";
+//		$data['datas'] = $this->m_supplier->getAllData('category');
+
+		$this->load->view('fragments/layout', $data);
 	}
 
 	function logout(){

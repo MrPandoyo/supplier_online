@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.35, for debian-linux-gnu (x86_64)
 --
--- Host: 127.0.0.1    Database: supplier_db
+-- Host: localhost    Database: supplier_db
 -- ------------------------------------------------------
 -- Server version	5.6.35-1+deb.sury.org~xenial+0.1
 
@@ -14,60 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `brand`
---
-
-DROP TABLE IF EXISTS `brand`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `brand` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) NOT NULL,
-  `kode` varchar(255) NOT NULL,
-  `id_category` int(9) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `kode` (`kode`),
-  KEY `id_category` (`id_category`),
-  CONSTRAINT `id_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `brand`
---
-
-LOCK TABLES `brand` WRITE;
-/*!40000 ALTER TABLE `brand` DISABLE KEYS */;
-/*!40000 ALTER TABLE `brand` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `category`
---
-
-DROP TABLE IF EXISTS `category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `category` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
-  `kode` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `kode` (`kode`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `category`
---
-
-LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'k04','awww'),(2,'k01','ucok'),(3,'k02','udin');
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `client`
@@ -164,13 +110,10 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `nama_product` varchar(255) NOT NULL,
-  `id_category` int(11) NOT NULL,
   `stock` int(11) NOT NULL DEFAULT '0',
   `description` text NOT NULL,
   `harga` decimal(13,4) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_category` (`id_category`),
-  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -277,4 +220,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-25 15:48:58
+-- Dump completed on 2019-04-22 16:41:58

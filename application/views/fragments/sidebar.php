@@ -28,24 +28,19 @@
             </span>
           </a>
           <ul class="treeview-menu" style="<?php if(isset($page_tab) && $page_tab == 'Master') echo 'display:block' ?>">
-            <li class="<?php if(isset($page_level1) && $page_level1 == 'Category') echo 'active' ?>"><a href="index.php/master_category"><i class="fa fa-circle-o"></i> Category</a></li>
-            <li class="<?php if(isset($page_level1) && $page_level1 == 'User Admin') echo 'active' ?>"><a href="index.php/admin/user_admin"><i class="fa fa-circle-o"></i> User Admin</a></li>
-            <li class="<?php if(isset($page_level1) && $page_level1 == 'Kurir') echo 'active' ?>"><a href="index.php/admin/kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="index.php/admin/manage_produk">
-            <i class="fa fa-th"></i> <span>Manage Products</span>
-          </a>
+			  <li class="<?php if(isset($page_level1) && $page_level1 == 'User Admin') echo 'active' ?>"><a href="index.php/admin/user_admin"><i class="fa fa-circle-o"></i> User Admin</a></li>
+			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Product') echo 'active' ?>"><a href="index.php/admin/manage_produk"><i class="fa fa-th"></i> <span>Manage Products</span></a></li>
+			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Kurir') echo 'active' ?>"><a href="index.php/admin/kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
+		  </ul>
         </li>
         <li>
           <a href="index.php/admin/manage_request">
-            <i class="fa fa-th"></i> <span>Manage Requests</span>
+            <i class="fa fa-arrow-left"></i> <span>Manage Requests</span>
           </a>
         </li>
         <li>
           <a href="index.php/admin/manage_pengiriman">
-            <i class="fa fa-th"></i> <span>Manage Pengiriman</span>
+            <i class="fa fa-paper-plane"></i> <span>Manage Pengiriman</span>
           </a>
         </li>
           <?php else: ?>

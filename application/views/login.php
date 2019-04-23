@@ -61,8 +61,7 @@
 		}
 
 	}else{
-		if($this->session->flashdata())
-		{
+		if($this->session->flashdata('daftar_sukses') != '') {
 			echo "<div class='alert alert-success alert-message'>";
 			echo $this->session->flashdata('daftar_sukses');
 			echo "</div>";

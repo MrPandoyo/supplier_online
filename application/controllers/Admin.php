@@ -20,10 +20,5 @@ class Admin extends CI_Controller {
 		$this->load->view('fragments/layout', ['content' => 'admin/home']);
 	}
 
-
-	public function logout(){
-		$this->session->sess_destroy();
-		redirect(base_url().'index.php/welcome?pesan=logout');
-	}
 }
 ?>

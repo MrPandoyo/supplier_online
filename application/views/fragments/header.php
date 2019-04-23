@@ -1,5 +1,5 @@
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="fixed hold-transition sidebar-mini <?php  echo($this->session->userdata('tipe_user') == 'client') ? 'skin-purple-light' : 'skin-red-light';?>">
 <!-- Site wrapper -->
 <div class="wrapper">
 <header class="main-header">
@@ -37,7 +37,7 @@
 				  <?php endif; ?>
                 <p>
 					<?php echo $this->session->userdata('nama'); ?>
-                  <small>Joined on </small>
+                  <small>Joined on <?php echo $this->session->userdata('join_date'); ?></small>
                 </p>
               </li>
 				<?php  if($this->session->userdata('tipe_user') == 'client') { ?>
@@ -52,11 +52,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-					<?php  if($this->session->userdata('tipe_user') == 'admin') : ?>
-						<a href="index.php/admin/logout" class="btn btn-default btn-flat">Logout</a>
-					<?php else: ?>
-						<a href="index.php/client/logout" class="btn btn-default btn-flat">Logout</a>
-					<?php endif; ?>
+					<a href="index.php/welcome/logout" class="btn btn-default btn-flat">Logout</a>
                 </div>
               </li>
             </ul>

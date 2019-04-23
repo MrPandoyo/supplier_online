@@ -54,7 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //custom
-$route['master_category'] = 'admins/Master_Category';
-$route['master_category/form'] = 'admins/Master_Category/form';
-$route['master_category/save'] = 'admins/Master_Category/save';
-$route['master_category/delete'] = 'admins/Master_Category/delete';
+$route['master_produk'] = 'admins/Master_Produk';
+$route['master_produk/form'] = 'admins/Master_Produk/form';
+$route['master_produk/save'] = 'admins/Master_Produk/save';
+$route['master_produk/delete'] = 'admins/Master_Produk/delete';

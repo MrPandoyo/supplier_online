@@ -11,7 +11,8 @@
 			<?php endif; ?>
         </div>
         <div class="pull-left info">
-          <p><?php echo $this->session->userdata('nama');?></p>
+          	<p><?php echo $this->session->userdata('nama');?></p>
+			<small>Joined on <?php echo $this->session->userdata('join_date'); ?></small>
         </div>
       </div>
     
@@ -22,14 +23,15 @@
         <?php if($this->session->userdata('tipe_user') == 'admin') : ?>
         <li class="treeview <?php if(isset($page_tab) && $page_tab == 'Master') echo 'menu-open' ?>">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Master</span>
-            <span class="pull-right-container">
+            <i class="fa fa-lock"></i> <span>Master</span>
+            <span class="pulll-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu" style="<?php if(isset($page_tab) && $page_tab == 'Master') echo 'display:block' ?>">
-			  <li class="<?php if(isset($page_level1) && $page_level1 == 'User Admin') echo 'active' ?>"><a href="index.php/admin/user_admin"><i class="fa fa-circle-o"></i> User Admin</a></li>
-			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Product') echo 'active' ?>"><a href="index.php/admin/manage_produk"><i class="fa fa-th"></i> <span>Manage Products</span></a></li>
+			  <li class="<?php if(isset($page_level1) && $page_level1 == 'User Admin') echo 'active' ?>"><a href="index.php/admin/user_admin"><i class="fa fa-lock"></i> User Admin</a></li>
+			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Client') echo 'active' ?>"><a href="index.php/admin/client"><i class="fa fa-users"></i> Client</a></li>
+			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Produk') echo 'active' ?>"><a href="index.php/master_produk"><i class="fa fa-th"></i> <span>Manage Products</span></a></li>
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Kurir') echo 'active' ?>"><a href="index.php/admin/kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
 		  </ul>
         </li>
@@ -45,19 +47,22 @@
         </li>
           <?php else: ?>
       <!-- client sidebar -->
-        <li>
+        <li class="<?php if(isset($page_tab) && $page_tab == 'Shop') echo 'active' ?>">
           <a href="index.php/client/shop">
             <i class="fa fa-th"></i> <span>Katalog produk</span>
           </a>
         </li>
         <li>
           <a href="index.php/client/order">
-            <i class="fa fa-th"></i> <span>Order</span>
+            <i class="fa fa-shopping-cart"></i> <span>Order</span>
+		  	<span class="pull-right-container">
+              <small class="label pull-right bg-red">0</small>
+            </span>
           </a>
         </li>
         <li>
           <a href="index.php/client/pengiriman">
-            <i class="fa fa-th"></i> <span>Pengiriman</span>
+            <i class="fa fa-paper-plane"></i> <span>Pengiriman</span>
           </a>
         </li>
           <?php endif; ?>

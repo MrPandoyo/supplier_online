@@ -28,13 +28,12 @@ CREATE TABLE `client` (
   `alamat` text NOT NULL,
   `id_user` int(9) NOT NULL,
   `verified` bit(1) NOT NULL DEFAULT b'0',
-  `join_date` date NOT NULL,
   `nama_pemilik` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +42,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'toko dummy','alamat',6,'\0','2019-03-25','ucok','12312321','ucok@yopmail.com'),(2,'Toko Client','alamat',4,'','2019-02-01','Client','0000','client@yopmail.com');
+INSERT INTO `client` VALUES (1,'toko dummy','alamat',6,'\0','ucok','12312321','ucok@yopmail.com'),(2,'Toko Client','alamat',4,'','Client','0000','client@yopmail.com'),(3,'toko dummy 2','alamat',7,'\0','dummy 2','1234','dummy2@yopmail.com'),(4,'toko dummy 1','alamat',8,'\0','dummy 1','123','dummy1@yopmail.com');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,13 +107,16 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_product` varchar(255) NOT NULL,
   `stock` int(11) NOT NULL DEFAULT '0',
   `description` text NOT NULL,
-  `harga` decimal(13,4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `harga` decimal(13,0) DEFAULT NULL,
+  `kode` varchar(32) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `kode` (`kode`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +125,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,'Produk 1',10,'xa',10000,'01',NULL),(2,'Produk 2',1,'awdw',20,'02',NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,8 +200,9 @@ CREATE TABLE `user` (
   `password` varchar(35) NOT NULL,
   `tipe_user` enum('admin','client') NOT NULL,
   `foto` varchar(255) DEFAULT NULL,
+  `join_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +211,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Administrator','admin@yopmail.com','21232f297a57a5a743894a0e4a801fc3','admin',NULL),(4,'Client','client@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL),(6,'toko dummy','ucok@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL);
+INSERT INTO `user` VALUES (1,'Administrator','admin@yopmail.com','21232f297a57a5a743894a0e4a801fc3','admin',NULL,'2019-02-01'),(4,'Client','client@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-02-01'),(6,'toko dummy','ucok@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-03-25'),(7,'toko dummy 2','dummy2@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-04-23'),(8,'toko dummy 1','dummy1@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-04-23');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -220,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-22 16:41:58
+-- Dump completed on 2019-04-23 17:01:36

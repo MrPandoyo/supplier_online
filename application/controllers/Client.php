@@ -23,7 +23,6 @@ class Client extends CI_Controller {
 	public function shop(){
 		$data['page_title'] = "Beli Supply";
 		$data['page_tab'] = "Shop";
-		$data['page_level1'] = "Category";
 //		$data['customCss'] = "";
 //		$data['customJavascript'] = "";
 		$data['content'] = "client/shop";
@@ -32,9 +31,5 @@ class Client extends CI_Controller {
 		$this->load->view('fragments/layout', $data);
 	}
 
-	function logout(){
-		$this->session->sess_destroy();
-		redirect(base_url().'index.php/welcome?pesan=logout');
-	}
 }
 ?>

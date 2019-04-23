@@ -33,7 +33,7 @@ class Welcome extends CI_Controller {
 				$cek = $data->num_rows();
 
 				if($cek > 0){
-					$session = array('id' => $d->id, 'nama' => $d->nama, 'email'=>$d->username ,'tipe_user'=>$d->tipe_user, 'status' => 'login', 'foto'=>$d->foto);
+					$session = array('id' => $d->id, 'nama' => $d->nama, 'email'=>$d->username ,'tipe_user'=>$d->tipe_user, 'status' => 'login', 'foto'=>$d->foto,'join_date'=>$d->join_date);
 					$this->session->set_userdata($session);
 					if($d->tipe_user == 'admin'){
 						redirect(base_url().'index.php/admin');
@@ -91,6 +91,7 @@ class Welcome extends CI_Controller {
 				'username' => $email,
 				'nama' => $namaToko,
 				'password' => md5($password),
+				'join_date' => date('Y-m-d H:i:s'),
 				'tipe_user' => 'client'
 			);
 			$idUser = $this->m_supplier->saveData($user,'user');
@@ -101,7 +102,6 @@ class Welcome extends CI_Controller {
 				'alamat' => $alamat,
 				'phone' => $phone,
 				'email' => $email,
-				'join_date' => date('Y-m-d H:i:s'),
 				'verified' => false,
 				'id_user' => $idUser
 			);
@@ -112,6 +112,11 @@ class Welcome extends CI_Controller {
 		}else{
 			$this->load->view('form_daftar');
 		}
+	}
+
+	function logout(){
+		$this->session->sess_destroy();
+		redirect(base_url().'?pesan=logout');
 	}
 
 }

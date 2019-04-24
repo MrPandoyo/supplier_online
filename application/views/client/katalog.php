@@ -33,28 +33,31 @@
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
-				<div class="col-md-4">
+				<?php foreach ($datas->result() as $d) { ?>
+				<div class="col-md-3">
 					<!-- Widget: user widget style 1 -->
 					<div class="box box-widget widget-user">
 						<!-- Add the bg color to the header using any of the bg-* classes -->
-						<div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;height: 250px;"></div>
+						<div class="text-center">
+							<img src="<?php echo($d->foto != null && $d->foto != '') ? base_url().'images/product/'.$d->foto : base_url().'images/no_image.png'; ?>" style="height: 200px;" alt="">
+						</div>
 						<div class="box-footer" style="padding-top: 0px;">
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="description-block">
-										<h5 class="description-header">NAMA ITEM</h5>
+										<h5 class="description-header"><?php echo $d->nama_product; ?></h5>
 									</div>
 								</div>
 								<div class="col-sm-6 border-right">
 									<div class="description-block">
-										<h5 class="description-header">Beli</h5>
+										<a class="btn btn-primary btn-block"><span class="fa fa-shopping-cart"></span> Beli</a>
 									</div>
 									<!-- /.description-block -->
 								</div>
 								<!-- /.col -->
 								<div class="col-sm-6 border-right">
 									<div class="description-block">
-										<h5 class="description-header">Detail</h5>
+										<a class="btn btn-primary btn-block"><span class="fa fa-eye"></span> Detail</a>
 									</div>
 									<!-- /.description-block -->
 								</div>
@@ -65,6 +68,7 @@
 					</div>
 					<!-- /.widget-user -->
 				</div>
+				<?php } ?>
 			</div>
 			<!-- /.box-body -->
 		</div>

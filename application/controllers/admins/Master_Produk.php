@@ -47,6 +47,7 @@ class Master_Produk extends CI_Controller {
 		$stock = $this->input->post('stock');
 		$harga = $this->input->post('harga');
 		$description = $this->input->post('description');
+		$foto=null;
 
 //		valdiating
 		if ($id != ''){
@@ -62,7 +63,16 @@ class Master_Produk extends CI_Controller {
 		}
 		$this->form_validation->set_rules('nama_product', 'Nama Produk', 'required');
 
-		if($this->form_validation->run() != false){
+		if($this->form_validation->run()){
+
+			$config = $this->m_supplier->uploadConfig('product');
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('foto')) {
+				$this->session->set_flashdata('pesan_error',$this->upload->display_errors());
+				redirect(base_url().'index.php/master_produk/form?id='.$id);
+			}else{
+				$foto = $this->upload->data('file_name');
+			}
 
 			$product = array(
 				'id' => $id,
@@ -71,11 +81,12 @@ class Master_Produk extends CI_Controller {
 				'stock' => $stock,
 				'harga' => $harga,
 				'description' => $description,
+				'foto' => $foto,
 			);
 			if($id != ''){
 				$this->m_supplier->updateData($product,'product');
 			}else{
-				$id = $this->m_supplier->saveData($product,'product');
+				$this->m_supplier->saveData($product,'product');
 			}
 
 			$this->session->set_flashdata('pesan_sukses','Produk '.$nama_product.' telah disimpan.');

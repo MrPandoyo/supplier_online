@@ -27,5 +27,11 @@ class M_supplier extends CI_Model{
 		return $this->db->delete($table);
 	}
 
+	function uploadConfig($destination){
+		$config['upload_path']          = './images/'.$destination;
+		$config['allowed_types']        = 'gif|jpg|png';
+		return $config;
+	}
+
 }
 ?>

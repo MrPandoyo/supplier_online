@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Client extends CI_Controller {
+class Katalog extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
@@ -17,8 +17,14 @@ class Client extends CI_Controller {
 	}
 
 	public function index(){
-		$this->load->view('fragments/layout', ['content' => 'client/home']);
+		$data['page_title'] = "Beli Supply";
+		$data['page_tab'] = "Katalog";
+		$data['content'] = "client/katalog";
+		$data['datas'] = $this->m_supplier->getAllData('product');
+
+		$this->load->view('fragments/layout', $data);
 	}
 
 }
 ?>
+

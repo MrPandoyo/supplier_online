@@ -7,7 +7,7 @@
 	<div class="box-header with-border">
 		<h3 class="box-title">Form Produk</h3>
 	</div>
-	<form action="index.php/master_produk/save" method="post">
+	<form action="index.php/master_produk/save" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="<?php if(isset($product)):echo $product[0]->id; endif; '' ?>">
 		<div class="box-body">
 			<div class="form-group">
@@ -29,6 +29,10 @@
 			<div class="form-group">
 				<label>Deskripsi</label>
 				<textarea name="description" placeholder="Masukan Deskripsi" class="form-control"><?php if(isset($product)):echo $product[0]->description; endif; '' ?></textarea>
+			</div>
+			<div class="form-group">
+				<label>Foto</label>
+				<input type="file" name="foto" class="form-control">
 			</div>
 		</div>
 		<div class="box-footer">

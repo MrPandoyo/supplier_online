@@ -47,8 +47,8 @@
         </li>
           <?php else: ?>
       <!-- client sidebar -->
-        <li class="<?php if(isset($page_tab) && $page_tab == 'Shop') echo 'active' ?>">
-          <a href="index.php/client/shop">
+        <li class="<?php if(isset($page_tab) && $page_tab == 'Katalog') echo 'active' ?>">
+          <a href="index.php/katalog">
             <i class="fa fa-th"></i> <span>Katalog produk</span>
           </a>
         </li>

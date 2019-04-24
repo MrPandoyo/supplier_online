@@ -53,8 +53,11 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-//custom
+//master produk
 $route['master_produk'] = 'admins/Master_Produk';
 $route['master_produk/form'] = 'admins/Master_Produk/form';
 $route['master_produk/save'] = 'admins/Master_Produk/save';
 $route['master_produk/delete'] = 'admins/Master_Produk/delete';
+
+//shop katalog
+$route['katalog'] = 'clients/Katalog';

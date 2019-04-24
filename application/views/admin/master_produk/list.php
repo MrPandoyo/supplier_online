@@ -24,7 +24,7 @@
 						foreach ($datas->result() as $data) {
 							echo "<tr>";
 							if($data->foto != null && $data->foto != ''){
-								echo "<td class='text-center'><img style='max-height: 50px;max-width: 50px;' src='images/product/'".$data->foto."></td>";
+								echo "<td class='text-center'><img style='max-height: 50px;max-width: 50px;' src='images/product/".$data->foto."'></td>";
 							}else{
 								echo "<td class='text-center'><img style='max-height: 50px;max-width: 50px;' src='images/no_image.png'></td>";
 							}

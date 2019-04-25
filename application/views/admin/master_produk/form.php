@@ -9,6 +9,7 @@
 	</div>
 	<form action="index.php/master_produk/save" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="<?php if(isset($product)):echo $product[0]->id; endif; '' ?>">
+		<input type="hidden" name="foto_name" value="<?php if(isset($product)):echo $product[0]->foto; endif; '' ?>">
 		<div class="box-body">
 			<div class="form-group">
 				<label>Kode Produk</label>

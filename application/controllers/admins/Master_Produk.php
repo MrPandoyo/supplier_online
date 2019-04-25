@@ -47,7 +47,7 @@ class Master_Produk extends CI_Controller {
 		$stock = $this->input->post('stock');
 		$harga = $this->input->post('harga');
 		$description = $this->input->post('description');
-		$foto=null;
+		$foto=$this->input->post('foto_name');
 
 //		valdiating
 		if ($id != ''){
@@ -66,12 +66,14 @@ class Master_Produk extends CI_Controller {
 		if($this->form_validation->run()){
 
 			$config = $this->m_supplier->uploadConfig('product');
-			$this->load->library('upload', $config);
-			if (!$this->upload->do_upload('foto')) {
-				$this->session->set_flashdata('pesan_error',$this->upload->display_errors());
-				redirect(base_url().'index.php/master_produk/form?id='.$id);
-			}else{
-				$foto = $this->upload->data('file_name');
+			if (!empty($_FILES['foto']['name'])){
+				$this->load->library('upload', $config);
+				if (!$this->upload->do_upload('foto')) {
+					$this->session->set_flashdata('pesan_error',$this->upload->display_errors());
+					redirect(base_url().'index.php/master_produk/form?id='.$id);
+				}else{
+					$foto = $this->upload->data('file_name');
+				}
 			}
 
 			$product = array(
@@ -83,6 +85,7 @@ class Master_Produk extends CI_Controller {
 				'description' => $description,
 				'foto' => $foto,
 			);
+
 			if($id != ''){
 				$this->m_supplier->updateData($product,'product');
 			}else{

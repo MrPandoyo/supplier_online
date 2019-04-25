@@ -50,7 +50,7 @@
 								</div>
 								<div class="col-sm-6 border-right">
 									<div class="description-block">
-										<a class="btn btn-primary btn-block"><span class="fa fa-shopping-cart"></span> Beli</a>
+										<a class="btn btn-primary btn-block" <?php echo(!$d->stock >0) {'disabled'} ?>><span class="fa fa-shopping-cart"></span> Beli</a>
 									</div>
 									<!-- /.description-block -->
 								</div>

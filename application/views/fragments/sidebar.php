@@ -29,8 +29,10 @@
             </span>
           </a>
           <ul class="treeview-menu" style="<?php if(isset($page_tab) && $page_tab == 'Master') echo 'display:block' ?>">
-			  <li class="<?php if(isset($page_level1) && $page_level1 == 'User Admin') echo 'active' ?>"><a href="index.php/admin/user_admin"><i class="fa fa-lock"></i> User Admin</a></li>
+			  <li class="<?php if(isset($page_level1) && $page_level1 == 'User Admin') echo 'active' ?>"><a href="index.php/master_user_admin"><i class="fa fa-lock"></i> User Admin</a></li>
+
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Client') echo 'active' ?>"><a href="index.php/admin/client"><i class="fa fa-users"></i> Client</a></li>
+        
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Produk') echo 'active' ?>"><a href="index.php/master_produk"><i class="fa fa-th"></i> <span>Manage Products</span></a></li>
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Kurir') echo 'active' ?>"><a href="index.php/admin/kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
 		  </ul>

@@ -61,3 +61,9 @@ $route['master_produk/delete'] = 'admins/Master_Produk/delete';
 
 //shop katalog
 $route['katalog'] = 'clients/Katalog';
+
+//user admin
+$route['master_user_admin'] = 'admins/Master_User_Admin';
+$route['master_user_admin/form'] = 'admins/Master_User_Admin/form';
+$route['master_user_admin/save'] = 'admins/Master_User_Admin/save';
+$route['master_user_admin/delete'] = 'admins/Master_User_Admin/delete';

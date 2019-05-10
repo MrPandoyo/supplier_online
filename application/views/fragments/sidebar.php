@@ -50,12 +50,12 @@
           <?php else: ?>
       <!-- client sidebar -->
         <li class="<?php if(isset($page_tab) && $page_tab == 'Katalog') echo 'active' ?>">
-          <a href="index.php/katalog">
+          <a href="<?php echo base_url().'index.php/katalog'?>">
             <i class="fa fa-th"></i> <span>Katalog produk</span>
           </a>
         </li>
-        <li>
-          <a href="index.php/client/order">
+        <li class="<?php if(isset($page_tab) && $page_tab == 'Order') echo 'active' ?>">
+          <a href="<?php echo base_url().'index.php/order'?>">
             <i class="fa fa-shopping-cart"></i> <span>Order</span>
 		  	<span class="pull-right-container">
               <small class="label pull-right bg-red">0</small>

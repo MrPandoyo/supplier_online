@@ -141,11 +141,12 @@ CREATE TABLE `transaksi` (
   `id_client` int(11) NOT NULL,
   `id_pengiriman` int(11) NOT NULL,
   `total_harga` decimal(13,4) DEFAULT NULL,
+  `status` enum('cart','pending','complete') DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_client` (`id_client`,`id_pengiriman`),
   KEY `id_pengiriman` (`id_pengiriman`),
   CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

@@ -34,7 +34,7 @@
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Client') echo 'active' ?>"><a href="index.php/admin/client"><i class="fa fa-users"></i> Client</a></li>
         
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Produk') echo 'active' ?>"><a href="index.php/master_produk"><i class="fa fa-th"></i> <span>Manage Products</span></a></li>
-			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Kurir') echo 'active' ?>"><a href="index.php/admin/kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
+			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Kurir') echo 'active' ?>"><a href="index.php/master_kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
 		  </ul>
         </li>
         <li>

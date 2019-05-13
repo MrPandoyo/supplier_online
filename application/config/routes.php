@@ -72,4 +72,5 @@ $route['add_trx'] = 'clients/Katalog/add_trx';
 
 //order
 $route['order'] = 'clients/Order';
+$route['proses_order'] = 'clients/Order/proses_order';
 

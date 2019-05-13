@@ -56,7 +56,7 @@ class Katalog extends CI_Controller {
 			$w2 = array('id_transaksi' => $cart[0]->id);
 			$details = $this->m_supplier->getData('transaksi_detail',$w2)->result();
 			foreach ($details as $d){
-				if($d->id == $product) redirect(base_url().'index.php/order');
+				if($d->id_product == $product)redirect(base_url().'index.php/order');
 			}
 
 			$id_trx = $cart[0]->id;

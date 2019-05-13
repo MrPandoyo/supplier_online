@@ -10,6 +10,13 @@ class M_supplier extends CI_Model{
 		return $this->db->get_where($table);
 	}
 
+//	function getProductFromDetail($idTrx){
+//		$this->db->from('product')
+//			->join('transaksi_detail', 'product.id = transaksi_detail.id_product')
+//			->where('transaksi_detail.id_transaksi',$idTrx);
+//		return $this->db->get();
+//	}
+
 	function saveData($data,$table){
 		$this->db->set($data);
 		$this->db->insert($table);
@@ -31,6 +38,16 @@ class M_supplier extends CI_Model{
 		$config['upload_path']          = './images/'.$destination;
 		$config['allowed_types']        = 'gif|jpg|png';
 		return $config;
+	}
+
+	function hitungTotal($details){
+		$total = 0;
+		foreach ($details as $data){
+			$w = array('id' => $data->id_product);
+			$p = $this->m_supplier->getData('product', $w)->result()[0];
+			$total = $total+$data->jumlah*$p->harga;
+		}
+		return $total;
 	}
 
 }

@@ -34,11 +34,42 @@ class Order extends CI_Controller
 		if($cart != null){
 			$w2 = array('id_transaksi' => $cart[0]->id);
 			$details = $this->m_supplier->getData('transaksi_detail',$w2)->result();
+
+//			log_message('info', 'details = '.print_r($details));
 			$data['details'] = $details;
+			$data['totals'] = $this->m_supplier->hitungTotal($details);
 		}
 		$data['cart'] = $cart;
 
 		$this->load->view('fragments/layout', $data);
+	}
+
+	public function proses_order(){
+		$id_trx = $this->input->post('id');
+		$totals = $this->input->post('totals');
+
+		$where = array('id_transaksi' => $id_trx);
+		$details = $this->m_supplier->getData('transaksi_detail',$where)->result();
+		foreach ($details as $d){
+			$jml = $this->input->post($d->id);
+			if($jml != null || $jml != ''){
+				$trx_detail = array(
+					'id' => $d->id,
+					'jumlah' => $jml
+				);
+				$this->m_supplier->updateData($trx_detail,'transaksi_detail');
+			}
+			$p = $this->m_supplier->getData('product',array('id'=>$d->id_product))->result();
+			$stock = $p[0]->stock - $jml;
+			$this->m_supplier->updateData(array('id'=>$d->id_product,'stock'=>$stock),'product');
+		}
+		$trx_array = array(
+			'id' => $id_trx,
+			'total_harga' => $totals,
+			'status' => 'pending'
+		);
+		$this->m_supplier->updateData($trx_array,'transaksi');
+		redirect(base_url() . 'index.php/pengiriman');
 	}
 }
 ?>

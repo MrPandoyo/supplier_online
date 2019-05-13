@@ -63,8 +63,8 @@
           </a>
         </li>
         <li>
-          <a href="index.php/client/pengiriman">
-            <i class="fa fa-paper-plane"></i> <span>Pengiriman</span>
+          <a href="<?php echo base_url().'index.php/daftar_transaksi'?>">
+            <i class="fa fa-paper-plane"></i> <span>Daftar Transaksi</span>
           </a>
         </li>
           <?php endif; ?>

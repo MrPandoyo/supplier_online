@@ -2,8 +2,13 @@
 defined('BASEPATH') or exit ('No Direct Script Access Allowed');
 
 class M_supplier extends CI_Model{
-	function getData($table,$where){
-		return $this->db->get_where($table,$where);
+	function getData($table,$where,$sort,$order){
+		if($sort != null && $order != null){
+			return $this->db->get_where($table,$where);
+		}else{
+			$this->db->order_by($sort, $order);
+			return $this->db->get_where($table,$where);
+		}
 	}
 
 	function getAllData($table){

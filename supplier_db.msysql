@@ -40,11 +40,6 @@ CREATE TABLE `client` (
 -- Dumping data for table `client`
 --
 
-LOCK TABLES `client` WRITE;
-/*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'toko dummy','alamat',6,'\0','ucok','12312321','ucok@yopmail.com'),(2,'Toko Client','alamat',4,'','Client','0000','client@yopmail.com'),(3,'toko dummy 2','alamat',7,'\0','dummy 2','1234','dummy2@yopmail.com'),(4,'toko dummy 1','alamat',8,'\0','dummy 1','123','dummy1@yopmail.com');
-/*!40000 ALTER TABLE `client` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `kurir`
@@ -83,10 +78,12 @@ CREATE TABLE `pengiriman` (
   `id_kurir` int(11) NOT NULL,
   `waktu_berangkat` date NOT NULL,
   `waktu_sampai` date DEFAULT NULL,
+  `id_transaksi` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_kurir` (`id_kurir`),
+  KEY `id_transaksi` (`id_transaksi`),
   CONSTRAINT `pengiriman_ibfk_1` FOREIGN KEY (`id_kurir`) REFERENCES `kurir` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pengiriman_ibfk_2` FOREIGN KEY (`id`) REFERENCES `transaksi` (`id_pengiriman`)
+  CONSTRAINT `pengiriman_ibfk_2` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -116,18 +113,13 @@ CREATE TABLE `product` (
   `foto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `kode` (`kode`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `product`
 --
 
-LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Produk 1',10,'xa',10000,'01',NULL),(2,'Produk 2',1,'awdw',20,'02',NULL);
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `transaksi`
@@ -139,24 +131,20 @@ DROP TABLE IF EXISTS `transaksi`;
 CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_client` int(11) NOT NULL,
-  `id_pengiriman` int(11) NOT NULL,
   `total_harga` decimal(13,4) DEFAULT NULL,
-  `status` enum('cart','pending','complete') DEFAULT NULL,
+  `status` enum('cart','pending','diproses','complete') DEFAULT NULL,
+  `waktu_dibuat` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_client` (`id_client`,`id_pengiriman`),
-  KEY `id_pengiriman` (`id_pengiriman`),
+  KEY `transaksi_ibfk_1` (`id_client`),
   CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-LOCK TABLES `transaksi` WRITE;
-/*!40000 ALTER TABLE `transaksi` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transaksi` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `transaksi_detail`
@@ -175,17 +163,13 @@ CREATE TABLE `transaksi_detail` (
   KEY `id_product` (`id_product`),
   CONSTRAINT `transaksi_detail_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transaksi_detail_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `transaksi_detail`
 --
 
-LOCK TABLES `transaksi_detail` WRITE;
-/*!40000 ALTER TABLE `transaksi_detail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transaksi_detail` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -212,7 +196,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Administrator','admin@yopmail.com','21232f297a57a5a743894a0e4a801fc3','admin',NULL,'2019-02-01'),(4,'Client','client@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-02-01'),(6,'toko dummy','ucok@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-03-25'),(7,'toko dummy 2','dummy2@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-04-23'),(8,'toko dummy 1','dummy1@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-04-23');
+INSERT INTO `user` VALUES (1,'Administrator','admin@yopmail.com','21232f297a57a5a743894a0e4a801fc3','admin',NULL,'2019-02-01'),(4,'Client','client@yopmail.com','21232f297a57a5a743894a0e4a801fc3','client',NULL,'2019-02-01');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -225,4 +209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-23 17:01:36
+-- Dump completed on 2019-05-13 20:23:52

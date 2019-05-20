@@ -2,11 +2,12 @@
 defined('BASEPATH') or exit ('No Direct Script Access Allowed');
 
 class M_supplier extends CI_Model{
-	function getData($table,$where,$sort,$order){
-		if($sort != null && $order != null){
+
+	function getData($table,$where,$sort = null,$direction = null){
+		if($sort != null && $direction != null){
 			return $this->db->get_where($table,$where);
 		}else{
-			$this->db->order_by($sort, $order);
+			$this->db->order_by($sort, $direction);
 			return $this->db->get_where($table,$where);
 		}
 	}
@@ -55,5 +56,21 @@ class M_supplier extends CI_Model{
 		return $total;
 	}
 
+	function getPengirimanEnroute(){
+		$idTrx = array();
+		$pengiriman = $this->getData('pengiriman', array('waktu_sampai' => null), 'waktu_berangkat', 'asc');
+		if($pengiriman != null){
+			foreach ($pengiriman->result() as $p) {
+				array_push($idTrx,$p->id_transaksi);
+			}
+		}
+
+		if(!empty($idTrx)){
+			$this->db->where_in('id', $idTrx);
+			return $this->db->get('transaksi');
+		}else{
+			return null;
+		}
+	}
+
 }
-?>

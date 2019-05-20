@@ -76,8 +76,8 @@ DROP TABLE IF EXISTS `pengiriman`;
 CREATE TABLE `pengiriman` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_kurir` int(11) NOT NULL,
-  `waktu_berangkat` date NOT NULL,
-  `waktu_sampai` date DEFAULT NULL,
+  `waktu_berangkat` datetime NOT NULL,
+  `waktu_sampai` datetime DEFAULT NULL,
   `id_transaksi` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_kurir` (`id_kurir`),
@@ -131,9 +131,9 @@ DROP TABLE IF EXISTS `transaksi`;
 CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_client` int(11) NOT NULL,
-  `total_harga` decimal(13,4) DEFAULT NULL,
-  `status` enum('cart','pending','diproses','complete') DEFAULT NULL,
-  `waktu_dibuat` date DEFAULT NULL,
+  `total_harga` decimal(13,0) DEFAULT NULL,
+  `status` enum('cart','pending','diproses','enroute','complete') DEFAULT NULL,
+  `waktu_dibuat` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `transaksi_ibfk_1` (`id_client`),
   CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`)

@@ -77,3 +77,27 @@ $route['add_trx'] = 'clients/Katalog/add_trx';
 //order
 $route['order'] = 'clients/Order';
 $route['proses_order'] = 'clients/Order/proses_order';
+$route['hapus_item'] = 'clients/Order/hapus_item';
+
+//daftar transaksi
+$route['daftar_transaksi'] = 'clients/Daftar_Transaksi';
+$route['daftar_transaksi/proses'] = 'clients/Daftar_Transaksi/proses';
+$route['daftar_transaksi/enroute'] = 'clients/Daftar_Transaksi/enroute';
+$route['daftar_transaksi/selesai'] = 'clients/Daftar_Transaksi/selesai';
+$route['detail_transaksi'] = 'clients/Daftar_Transaksi/detail';
+$route['print_transaksi'] = 'clients/Daftar_Transaksi/printTransaksi';
+
+//manage order
+$route['manage_order'] = 'admins/Manage_Order';
+$route['proses_transaksi'] = 'admins/Manage_Order/prosesTransaksi';
+
+//manage pengiriman
+$route['manage_pengiriman'] = 'admins/Manage_Pengiriman';
+$route['manage_pengiriman/enroute'] = 'admins/Manage_Pengiriman/enroute';
+$route['kirim_barang'] = 'admins/Manage_Pengiriman/prosesPengiriman';
+$route['selesai_kirim'] = 'admins/Manage_Pengiriman/selesaiKirim';
+
+//laporan transakasi
+$route['laporan_transaksi'] = 'admins/Laporan_Transaksi';
+$route['print_laporan'] = 'admins/Laporan_Transaksi/printLaporan';
+

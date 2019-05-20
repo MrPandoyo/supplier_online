@@ -25,7 +25,12 @@
 					foreach ($details as $data) {
 						$w = array('id' => $data->id_product);
 						$p = $this->m_supplier->getData('product', $w)->result()[0];
-						echo ($p->stock == 0) ? '<tr style="background-color: lightcoral"></tr>' : "<tr></tr>";
+						if($p->stock == 0){
+							echo '<tr style="background-color: lightcoral">';
+							$empty = true;
+						}else{
+							echo '<tr>';
+						}
 						if ($p->foto != null && $p->foto != '') {
 							echo "<td class='text-center'><img style='max-height: 50px;max-width: 50px;' src='images/product/" . $p->foto . "'></td>";
 						} else {
@@ -34,7 +39,7 @@
 						echo "<td>" . $p->nama_product . "</td>";
 						echo "<td><input data-harga='$p->harga' type='number' name='$data->id' max='$p->stock' min='1' class='form-control jml' value='" . $data->jumlah . "'></td>";
 						echo "<td class='subtotal' data-total='".$p->harga * $data->jumlah."' id='$data->id'>".$p->harga * $data->jumlah."</td>";
-						echo "<td class='text-center'><a  class='btn btn-danger'><span class='fa fa-trash'></span></a></td>";
+						echo "<td class='text-center'><a href='".base_url()."index.php/hapus_item?id=".$data->id."' class='btn btn-danger'><span class='fa fa-trash'></span></a></td>";
 						echo "</tr>";
 					}
 					echo "<tr>";
@@ -44,14 +49,23 @@
 					?>
 					</tbody>
 				</table>
-					<button type="submit" class="pull-right btn btn-primary">Proses Order</button>
+					<?php if($empty) { ?>
+					<div class="alert alert-danger">
+						Harap hapus item yang stocknya telah habis
+					</div>
+					<?php } ?>
+					<button type="submit" class="pull-right btn btn-primary" <?php echo ($empty) ? 'disabled' : ''; ?>>Proses Order</button>
 				</form>
+				<?php }else{ ?>
+					<div class="text-center">
+						<h3>Order kosong, silahkan klik <a href="<?php echo base_url().'index.php/katalog'; ?>">disini</a> untuk menambah order</h3>
+					</div>
 				<?php } ?>
-			</div>			</div>
-			<!-- /.box-body -->
+			</div>
 		</div>
-		<!-- /.box -->
+			<!-- /.box-body -->
 	</div>
-	<!-- /.col -->
+	<!-- /.box -->
 </div>
+<!-- /.col -->
 

@@ -1,46 +1,44 @@
 <div class="row">
 	<div class="col-xs-12">
-		<div class="box">
-			<div class="box-header">
-				<h3 class="box-title">List Transaksi <?php echo $sub_tab; ?></h3>
+		<div class="nav-tabs-custom">
+			<ul class="nav nav-tabs">
+				<li class="<?php echo ($sub_tab == 'Pending') ? 'active' : ''; ?>"><a href="<?php echo base_url().'index.php/daftar_transaksi';?>" >Transaksi Pending</a></li>
+				<li class="<?php echo ($sub_tab == 'Proses') ? 'active' : ''; ?>"><a href="<?php echo base_url().'index.php/daftar_transaksi/proses';?>" >Transaksi yang Diproses</a></li>
+				<li class="<?php echo ($sub_tab == 'Enroute') ? 'active' : ''; ?>"><a href="<?php echo base_url().'index.php/daftar_transaksi/enroute';?>" >Sedang Dikirim</a></li>
+				<li class="<?php echo ($sub_tab == 'Selesai') ? 'active' : ''; ?>"><a href="<?php echo base_url().'index.php/daftar_transaksi/selesai';?>" >Transaksi Selesai</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-content">
+					<div class="box-body table-responsive">
+						<table class="table table-bordered table-striped">
+							<thead>
+							<tr>
+								<th>Id Transaksi</th>
+								<th>Waktu Transaksi</th>
+								<th>Total Harga</th>
+								<th class="text-center">Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php foreach ($datas->result() as $data) { ?>
+								<tr>
+								<td><?php echo $data->id; ?></td>
+								<td><?php echo $data->waktu_dibuat; ?></td>
+								<td><?php echo $data->total_harga; ?> </td>
+								<td class='text-center'>
+									<a href='index.php/detail_transaksi?id=<?php echo $data->id?>' class='btn btn-warning'>Detail</a>
+									<?php if ($sub_tab == 'Enroute'){ ?>
+									<a href='index.php/selesai_kirim?id=<?php echo $data->id?>' class='btn btn-success'>Selesai</a>
+									<?php } ?>
+								</td>
+								</tr>
+							<?php } ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
-			<!-- /.box-header -->
-			<div class="box-body table-responsive">
-				<table class="table table-bordered table-striped">
-					<thead>
-					<tr>
-						<th>Id Transaksi</th>
-						<th>Waktu Transaksi</th>
-						<th>Kode Product</th>
-						<th>Stock</th>
-						<th>Harga</th>
-						<th>Deskripsi</th>
-						<th class="text-center">Action</th>
-					</tr>
-					</thead>
-					<tbody>
-					<?php
-					foreach ($datas->result() as $data) {
-						echo "<tr>";
-						if($data->foto != null && $data->foto != ''){
-							echo "<td class='text-center'><img style='max-height: 50px;max-width: 50px;' src='images/product/".$data->foto."'></td>";
-						}else{
-							echo "<td class='text-center'><img style='max-height: 50px;max-width: 50px;' src='images/no_image.png'></td>";
-						}
-						echo "<td>".$data->nama_product."</td>";
-						echo "<td>".$data->kode."</td>";
-						echo "<td>".$data->stock."</td>";
-						echo "<td>".$data->harga."</td>";
-						echo "<td>".$data->description."</td>";
-						echo "<td class='text-center'><a href='index.php/master_produk/form?id=".$data->id."' class='btn btn-warning'>Edit</a> <a href='index.php/master_produk/delete?id=".$data->id."' class='btn btn-danger'>Delete</a></td>";
-						echo "</tr>";
-					} ?>
-					</tbody>
-				</table>
-			</div>
-			<!-- /.box-body -->
 		</div>
-		<!-- /.box -->
 	</div>
 	<!-- /.col -->
 </div>

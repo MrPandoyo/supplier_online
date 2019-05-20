@@ -69,7 +69,18 @@ class Order extends CI_Controller
 			'status' => 'pending'
 		);
 		$this->m_supplier->updateData($trx_array,'transaksi');
-		redirect(base_url() . 'index.php/pengiriman');
+		redirect(base_url() . 'index.php/daftar_transaksi');
+	}
+
+	public function hapus_item(){
+
+		if (isset($_GET['id']) && $_GET['id'] != ''){
+			$this->m_supplier->deleteData($_GET['id'],'transaksi_detail');
+		}else{
+			redirect(base_url());
+		}
+
+		redirect(base_url().'index.php/order');
 	}
 }
 ?>

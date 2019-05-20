@@ -5,9 +5,9 @@
       <div class="user-panel">
         <div class="pull-left image">
 			<?php  if($this->session->userdata('foto') != null && $this->session->userdata('foto') != '') : ?>
-				<img src="images/profile/<?php echo $this->session->userdata('foto')?>" class="img-circle" alt="User Image">
+				<img style="width: 50px; max-width: 50px; height: 50px;" src="images/profile/<?php echo $this->session->userdata('foto')?>" class="img-circle" alt="User Image">
 			<?php else: ?>
-				<img src="images/user.png" class="img-circle" alt="User Image">
+				<img style="width: 50px; max-width: 50px; height: 50px;" src="images/user.png" class="img-circle" alt="User Image">
 			<?php endif; ?>
         </div>
         <div class="pull-left info">
@@ -31,20 +31,25 @@
           <ul class="treeview-menu" style="<?php if(isset($page_tab) && $page_tab == 'Master') echo 'display:block' ?>">
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'User Admin') echo 'active' ?>"><a href="index.php/master_user_admin"><i class="fa fa-lock"></i> User Admin</a></li>
 
-			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Client') echo 'active' ?>"><a href="index.php/admin/client"><i class="fa fa-users"></i> Client</a></li>
+<!--			  <li class="--><?php //if(isset($page_level1) && $page_level1 == 'Client') echo 'active' ?><!--"><a href="index.php/admin/client"><i class="fa fa-users"></i> Client</a></li>-->
         
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Produk') echo 'active' ?>"><a href="index.php/master_produk"><i class="fa fa-th"></i> <span>Manage Products</span></a></li>
 			  <li class="<?php if(isset($page_level1) && $page_level1 == 'Kurir') echo 'active' ?>"><a href="index.php/master_kurir"><i class="fa fa-circle-o"></i> Kurir</a></li>
 		  </ul>
         </li>
-        <li>
-          <a href="index.php/admin/manage_request">
-            <i class="fa fa-arrow-left"></i> <span>Manage Requests</span>
+        <li class="<?php if(isset($page_tab) && $page_tab == 'Manage_Order') echo 'active' ?>">
+          <a href="<?php echo base_url().'index.php/manage_order'; ?>">
+            <i class="fa fa-arrow-left"></i> <span>Manage Order</span>
           </a>
         </li>
-        <li>
-          <a href="index.php/admin/manage_pengiriman">
+        <li class="<?php if(isset($page_tab) && $page_tab == 'Manage_Pengiriman') echo 'active' ?>">
+          <a href="<?php echo base_url().'index.php/manage_pengiriman'; ?>">
             <i class="fa fa-paper-plane"></i> <span>Manage Pengiriman</span>
+          </a>
+        </li>
+        <li class="<?php if(isset($page_tab) && $page_tab == 'Laporan_Transaksi') echo 'active' ?>">
+          <a href="<?php echo base_url().'index.php/laporan_transaksi'; ?>">
+            <i class="fa fa-list-alt"></i> <span>Laporan Transaksi</span>
           </a>
         </li>
           <?php else: ?>
@@ -57,14 +62,14 @@
         <li class="<?php if(isset($page_tab) && $page_tab == 'Order') echo 'active' ?>">
           <a href="<?php echo base_url().'index.php/order'?>">
             <i class="fa fa-shopping-cart"></i> <span>Order</span>
-		  	<span class="pull-right-container">
-              <small class="label pull-right bg-red">0</small>
-            </span>
+<!--		  	<span class="pull-right-container">-->
+<!--              <small class="label pull-right bg-red">0</small>-->
+<!--            </span>-->
           </a>
         </li>
-        <li>
+        <li class="<?php if(isset($page_tab) && $page_tab == 'Daftar_Transaksi') echo 'active' ?>">
           <a href="<?php echo base_url().'index.php/daftar_transaksi'?>">
-            <i class="fa fa-paper-plane"></i> <span>Daftar Transaksi</span>
+            <i class="fa fa-th-list"></i> <span>Daftar Transaksi</span>
           </a>
         </li>
           <?php endif; ?>

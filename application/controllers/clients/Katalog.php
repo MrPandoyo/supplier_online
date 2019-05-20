@@ -64,7 +64,7 @@ class Katalog extends CI_Controller {
 			$trx = array(
 				'id_client' => $client[0]->id,
 				'status' => 'cart',
-				'waktu_dibuat' => date('Y-m-d')
+				'waktu_dibuat' => date('Y-m-d H:i:s')
 			);
 			$id_trx = $this->m_supplier->saveData($trx,'transaksi');
 		}

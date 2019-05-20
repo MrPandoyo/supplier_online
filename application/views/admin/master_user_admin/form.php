@@ -20,18 +20,7 @@
 			</div>
 			<div class="form-group">
 				<label>Password</label>
-				<input required min="0" type="password" class="form-control" name="password" value="<?php if(isset($user)):echo $user[0]->password; endif; '' ?>" >
-			</div>
-			<div class="form-group">
-				<label>Tipe User</label>
-				<select required min="0" class="form-control" name="tipe_user" value="<?php if(isset($user)):echo $user[0]->tipe_user; endif; '' ?>">
-			        <option value="Client">client</option>
-			        <option value="Admin">admin</option>
-			    </select>
-			</div>
-			<div class="form-group">
-				<label>Join Date</label>
-				<input required min="0" type="date" class="form-control" name="join_date" value="<?php if(isset($user)):echo $user[0]->join_date; endif; '' ?>" >
+				<input required min="0" type="password" class="form-control" name="password" >
 			</div>
 			<div class="form-group">
 				<label>Foto</label>

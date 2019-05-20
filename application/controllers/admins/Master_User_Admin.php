@@ -23,7 +23,7 @@ class Master_User_Admin extends CI_Controller {
 		$data['customCss'] = "helper/table_css";
 		$data['customJavascript'] = "helper/table_javascript";
 		$data['content'] = "admin/master_user_admin/list";
-		$data['datas'] = $this->m_supplier->getAllData('user');
+		$data['datas'] = $this->m_supplier->getData('user',array('tipe_user'=>'admin'));
 
 		$this->load->view('fragments/layout', $data);
 	}
@@ -45,8 +45,6 @@ class Master_User_Admin extends CI_Controller {
 		$nama = $this->input->post('nama');
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		$tipe_user = $this->input->post('tipe_user');
-		$join_date = $this->input->post('join_date');
 		$foto = $this->input->post('foto_name');
 
 //		valdiating
@@ -65,19 +63,27 @@ class Master_User_Admin extends CI_Controller {
 				}
 			}
 
-			$user = array(
-				'id' => $id,
-				'nama' => $nama,
-				'username' => $username,
-				'password' => $password,
-				'tipe_user' => $tipe_user,
-				'join_date' => $join_date,
-				'foto' => $foto,
-			);
+
 			if($id != ''){
+				$user = array(
+					'id' => $id,
+					'nama' => $nama,
+					'username' => $username,
+					'password' => md5($password),
+					'foto' => $foto
+				);
 				$this->m_supplier->updateData($user,'user');
 			}else{
-				$id = $this->m_supplier->saveData($user,'user');
+				$user = array(
+					'id' => $id,
+					'nama' => $nama,
+					'username' => $username,
+					'password' => md5($password),
+					'tipe_user' => 'admin',
+					'join_date' => date('Y-m-d'),
+					'foto' => $foto
+				);
+				$this->m_supplier->saveData($user,'user');
 			}
 
 			$this->session->set_flashdata('pesan_sukses','User '.$username.' telah disimpan.');

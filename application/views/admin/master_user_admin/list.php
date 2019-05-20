@@ -12,7 +12,6 @@
 					<tr>
 						<th>Nama</th>
 						<th>Username</th>
-						<th>Tipe user</th>
 						<th>Photo</th>
 						<th class="text-center">Action</th>
 					</tr>
@@ -23,7 +22,6 @@
 							echo "<tr>";
 							echo "<td>".$data->nama."</td>";
 							echo "<td>".$data->username."</td>";
-							echo "<td>".$data->tipe_user."</td>";
 							if($data->foto != null && $data->foto != ''){
 								echo "<td class='text-center'><img style='max-height: 50px;max-width: 50px;' src='images/profile/".$data->foto."'></td>";
 							}else{
